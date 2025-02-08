@@ -14,7 +14,7 @@ class LoginView(QDialog):
 
         # Logo and Developer name
         self.logo_label = QLabel()
-        logo_path = "university_logo.jpeg"
+        logo_path = "university_logo.png"
         if os.path.exists(logo_path):
             pixmap = QPixmap(logo_path)
             self.logo_label.setPixmap(pixmap.scaled(100, 100, Qt.AspectRatioMode.KeepAspectRatio))

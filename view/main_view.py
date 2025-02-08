@@ -25,7 +25,7 @@ class MainView(QMainWindow):
         # Header
         header_layout = QHBoxLayout()
         logo_label = QLabel()
-        logo_path = "university_logo.jpeg"
+        logo_path = "university_logo.png"
         if os.path.exists(logo_path):
             pix = QPixmap(logo_path).scaled(80, 80, Qt.AspectRatioMode.KeepAspectRatio, Qt.TransformationMode.SmoothTransformation)
             logo_label.setPixmap(pix)
