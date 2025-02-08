@@ -3,18 +3,19 @@ import os
 from PyQt6.QtWidgets import QDialog, QVBoxLayout, QLabel, QLineEdit, QPushButton, QComboBox, QMessageBox
 from PyQt6.QtGui import QPixmap, QIcon
 from PyQt6.QtCore import Qt
+from utilities import resource_path  # new import
 
 class LoginView(QDialog):
     def __init__(self, parent=None):
         super().__init__(parent)
         self.setWindowTitle("Login / Register")
-        self.setWindowIcon(QIcon("university_logo.ico"))  # set the app icon
+        self.setWindowIcon(QIcon(resource_path("university_logo.ico")))  # use resource_path here
         self.setFixedSize(350, 300)
         layout = QVBoxLayout()
 
         # Logo and Developer name
         self.logo_label = QLabel()
-        logo_path = "university_logo.png"
+        logo_path = resource_path("university_logo.png")  # use resource_path here
         if os.path.exists(logo_path):
             pixmap = QPixmap(logo_path)
             self.logo_label.setPixmap(pixmap.scaled(100, 100, Qt.AspectRatioMode.KeepAspectRatio))

@@ -1,9 +1,10 @@
 # view/main_view.py
 import os
 from PyQt6.QtWidgets import QMainWindow, QWidget, QVBoxLayout, QHBoxLayout, QLabel, QTabWidget
-from PyQt6.QtGui import QPixmap, QIcon  # added QIcon import
+from PyQt6.QtGui import QPixmap, QIcon
 from PyQt6.QtCore import Qt
 from view.tabs import MessagingTab, StatusTab, GroupsTab, ProfileTab, ApartmentManagementTab, DashboardTab
+from utilities import resource_path  # new import
 
 class MainView(QMainWindow):
     def __init__(self, user_id, user_name, user_role, db_manager, parent=None):
@@ -13,7 +14,7 @@ class MainView(QMainWindow):
         self.user_role = user_role  # 'landlord' or 'tenant'
         self.db_manager = db_manager
         self.setWindowTitle("Apartment Management & Messaging App")
-        self.setWindowIcon(QIcon("university_logo.ico"))  # set the app icon
+        self.setWindowIcon(QIcon(resource_path("university_logo.ico")))  # use resource_path here
         self.setGeometry(100, 100, 1000, 700)
         self.initUI()
     
@@ -25,7 +26,7 @@ class MainView(QMainWindow):
         # Header
         header_layout = QHBoxLayout()
         logo_label = QLabel()
-        logo_path = "university_logo.png"
+        logo_path = resource_path("university_logo.png")  # use resource_path here
         if os.path.exists(logo_path):
             pix = QPixmap(logo_path).scaled(80, 80, Qt.AspectRatioMode.KeepAspectRatio, Qt.TransformationMode.SmoothTransformation)
             logo_label.setPixmap(pix)
