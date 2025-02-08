@@ -1,0 +1,5 @@
+/dist
+/build
+/__pycache__
+view/__pycache__
+main.spec
