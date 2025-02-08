@@ -22,13 +22,18 @@ This project is a desktop application built with PyQt6 and SQLite. It provides f
    ```
 
 ## Building an Executable
-To create a standalone executable for the app, install PyInstaller:
-```
+↑To create a standalone executable for the app, 
+- install PyInstaller:
+```bash
 pip install pyinstaller
 ```
-Then run:
+- Generate a spec file:
+```bash
+pyi-makespec --onefile --windowed --icon=university_logo.ico main.py
 ```
-pyinstaller --onefile --icon=university_logo.ico main.py
+Then run:
+```bash
+pyinstaller main.spec
 ```
 The executable will be created in the `dist` folder.
 
