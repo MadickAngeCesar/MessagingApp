@@ -72,14 +72,23 @@ class MessagingTab(QWidget):
         self.update_messages()
     
     def send_message(self):
-        if self.target_user_id is None:
-            QMessageBox.warning(self, "Error", "Please select a conversation.")
-            return
         msg = self.message_input.text().strip()
-        if msg:
-            self.db_manager.add_message(self.current_user_id, self.target_user_id, msg)
-            self.update_messages()
-            self.message_input.clear()
+        if not msg:
+            return
+        # If no conversation is selected, try to create a new one based on search input.
+        if self.target_user_id is None:
+            search_text = self.search_input.text().strip()
+            if not search_text:
+                QMessageBox.warning(self, "Error", "Please select or specify a conversation.")
+                return
+            partner = self.db_manager.get_user_by_phone(search_text)
+            if not partner:
+                QMessageBox.warning(self, "Error", "User not found.")
+                return
+            self.target_user_id = partner[0]
+        self.db_manager.add_message(self.current_user_id, self.target_user_id, msg)
+        self.update_messages()
+        self.message_input.clear()
     
     def attach_file(self):
         if self.target_user_id is None:
